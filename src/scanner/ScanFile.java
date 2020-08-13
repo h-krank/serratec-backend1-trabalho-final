@@ -27,6 +27,13 @@ public class ScanFile extends GetSources{
 				}
 				Funcionario funcionario = Parsing.parseFuncionario(person);
 				
+				if (funcionario == null) {
+					while(!input.nextLine().isBlank()) {
+						//Pula dependentes após falha de cadastro de funcionário
+					}
+					continue;
+				}
+				
 				//Enquanto não encontrar uma linha vazia, adiciona as linhas subsequentes como dependentes
 				while (true) {
 						if (input.hasNextLine()) {
@@ -39,11 +46,10 @@ public class ScanFile extends GetSources{
 							funcionario.calcularINSS();
 							funcionario.calcularIR();
 							
-							if (funcionario != null) {
-								funcionarios.add(funcionario);
-								writer.write(funcionario.toString());
-								System.out.println("\nFuncionário cadastrado com sucesso!");
-							}
+							funcionarios.add(funcionario);
+							writer.write(funcionario.toString());
+							System.out.println("\nFuncionário cadastrado com sucesso!");
+						
 							break;
 						}
 

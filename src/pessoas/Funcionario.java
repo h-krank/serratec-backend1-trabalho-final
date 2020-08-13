@@ -9,8 +9,6 @@ import java.util.Set;
 import scanner.Parsing;
 
 public class Funcionario extends Pessoa implements Impostos{
-	private static Set<String> cpfFuncionarios = new HashSet<String>();
-
 	private double salarioBruto;
 	private double descontoInss;
 	private double descontoIr;
@@ -66,16 +64,11 @@ public class Funcionario extends Pessoa implements Impostos{
 		this.salarioLiquido = this.salarioBruto - this.descontoInss- this.descontoIr;
 	}
 	
-	public static Set<String> getCpfFuncionarios() {
-		return cpfFuncionarios;
-	}
-	
-	public static void addCpfFuncionarios(String cpf) {
-		Funcionario.cpfFuncionarios.add(cpf);
-	}
 	public void addDependente(Dependente dependente) {		
-		if (dependente != null)
+		if (dependente != null) {
 			this.dependentes.add(dependente);
+			System.out.printf("Dependente %d cadastrado com sucesso!\n", dependentes.size());
+		}
 	}
 	
 	@Override

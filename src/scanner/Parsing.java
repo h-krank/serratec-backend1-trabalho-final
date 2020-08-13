@@ -9,6 +9,7 @@ import exceptions.FuncionarioException;
 import pessoas.Dependente;
 import pessoas.Funcionario;
 import pessoas.Parentesco;
+import pessoas.Pessoa;
 
 public class Parsing {
 	
@@ -28,10 +29,10 @@ public class Parsing {
 				throw new FuncionarioException("CPF inválido");
 			
 			//Verifica se o CPF é unico
-			int cpfQuant = Funcionario.getCpfFuncionarios().size();
-			Funcionario.addCpfFuncionarios(cpf);
+			int cpfQuant = Pessoa.getListaCpf().size();
+			Pessoa.addCpf(cpf);
 			
-			if (cpfQuant == Funcionario.getCpfFuncionarios().size()) {
+			if (cpfQuant == Pessoa.getListaCpf().size()) {
 				throw new FuncionarioException("CPF já cadastrado");
 			}
 			
@@ -64,10 +65,10 @@ public class Parsing {
 				throw new DependenteException("Cadastro dependente falhou - CPF inválido");
 			
 			//Verifica se o CPF é unico			
-			int cpfQuant = Dependente.getCpfDependentes().size();
-			Dependente.addCpfDependentes(cpf);
+			int cpfQuant = Pessoa.getListaCpf().size();
+			Pessoa.addCpf(cpf);
 			
-			if (cpfQuant == Dependente.getCpfDependentes().size()) {
+			if (cpfQuant == Pessoa.getListaCpf().size()) {
 				throw new DependenteException("Cadastro dependente falhou - CPF já cadastrado");
 			}
 			
