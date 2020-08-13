@@ -17,12 +17,9 @@ public class Start {
 				ScanFile.scan();
 			} catch (IOException e) {
 				System.out.println(e.getMessage());
-			} catch (NoSuchElementException e) {
-				System.out.println("ERROR");
+
 			}
-
 		}
-
 }
 
 

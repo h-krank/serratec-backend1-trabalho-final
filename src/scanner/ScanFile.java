@@ -1,10 +1,8 @@
 package scanner;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 import pessoas.Funcionario;
@@ -16,8 +14,9 @@ public class ScanFile extends GetSources{
 		String outputFile = outputFile();
 		Scanner input = new Scanner(inputFile);
 		FileWriter writer = new FileWriter(outputFile);
+		Boolean finish = false; 
+		
 		try {
-
 			//Adiciona a primeira linha do bloco como novo funcionário
 			while (input.hasNextLine()) {
 				String[] person = input.nextLine().split(";");
@@ -30,11 +29,13 @@ public class ScanFile extends GetSources{
 				
 				//Enquanto não encontrar uma linha vazia, adiciona as linhas subsequentes como dependentes
 				while (true) {
-						person = input.nextLine().split(";");
+						if (input.hasNextLine()) {
+							person = input.nextLine().split(";");	
+						} else {
+							finish = true;
+						}
 
-						//Ao encontrar uma linha vazia, finaliza os valores do funcionário
-						//adiciona na lista de funcionários e quebra o loop
-						if (person.length == 1) {
+						if (person.length == 1 || finish) {
 							funcionario.calcularINSS();
 							funcionario.calcularIR();
 							
@@ -49,15 +50,9 @@ public class ScanFile extends GetSources{
 						funcionario.addDependente(person);
 				}
 			}
-			
-		}catch (FileNotFoundException e) {
-			System.out.println("File not found");
-			
-		}catch (NoSuchElementException e) {
-			System.out.println("No such element excpetion");
-		}catch (IOException e) {
-			System.out.println(e.getMessage());
-		} finally {
+
+		} 
+		finally {
 			input.close();
 			writer.close();
 			System.out.println("\n" + outputFile + " atualizado");
