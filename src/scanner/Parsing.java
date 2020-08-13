@@ -16,12 +16,19 @@ public class Parsing {
 		
 		try {
 			System.out.printf("\n\nCadastrando %s...\n", person[0]);
+<<<<<<< HEAD
 			String nome 			= person[0];
 			Double tryCpf 			= Double.parseDouble(person[1]);
 			String cpf				= person[1];
 			DateTimeFormatter data 	= DateTimeFormatter.ofPattern("yyyyMMdd");
+=======
+			String nome 		= person[0];
+			Double tryCpf 		= Double.parseDouble(person[1]);
+			String cpf		= person[1];
+			DateTimeFormatter data 	= DateTimeFormatter.ofPattern("yyyMMdd");
+>>>>>>> f0c0462f3bff0b291c3ec4a6af2ff8d9f9a48ade
 			LocalDate nascimento 	= LocalDate.parse(person[2], data);
-			Double salario 			= Double.parseDouble(person[3]);
+			Double salario 		= Double.parseDouble(person[3]);
 			
 			//Verifica se o CPF tem 11 digitos
 			if (person[1].length() != 11)
@@ -49,9 +56,9 @@ public class Parsing {
 	
 	public static Dependente parseDependente(String[] person) {
 		try {
-			String nome 			= person[0];
-			Double tryCpf 			= Double.parseDouble(person[1]);
-			String cpf 				= person[1];
+			String nome 		= person[0];
+			Double tryCpf 		= Double.parseDouble(person[1]);
+			String cpf 		= person[1];
 			DateTimeFormatter data 	= DateTimeFormatter.ofPattern("yyyMMdd");
 			LocalDate nascimento 	= LocalDate.parse(person[2], data);
 			Parentesco parentesco 	= Parentesco.valueOf(person[3]);
