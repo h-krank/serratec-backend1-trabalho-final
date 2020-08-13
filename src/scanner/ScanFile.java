@@ -47,7 +47,7 @@ public class ScanFile extends GetSources{
 							break;
 						}
 
-						funcionario.addDependente(person);
+						funcionario.addDependente(Parsing.parseDependente(person));
 				}
 			}
 

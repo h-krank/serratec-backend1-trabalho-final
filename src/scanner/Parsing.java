@@ -42,8 +42,7 @@ public class Parsing {
 		}catch (FuncionarioException e) {
 			System.out.println("\nCadastro de funcionário falhou - " + e.getMessage());
 		}
-		
-		Funcionario.setCount(-1);
+
 		return null;
 	}
 	

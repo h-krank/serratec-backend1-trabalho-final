@@ -9,10 +9,8 @@ import java.util.Set;
 import scanner.Parsing;
 
 public class Funcionario extends Pessoa implements Impostos{
-	private static int count = 1;
 	private static Set<String> cpfFuncionarios = new HashSet<String>();
 
-	private int id;
 	private double salarioBruto;
 	private double descontoInss;
 	private double descontoIr;
@@ -22,10 +20,7 @@ public class Funcionario extends Pessoa implements Impostos{
 	
 	public Funcionario(String nome, String cpf, LocalDate nascimento, double salario) {
 		super(nome, cpf, nascimento);
-		this.salarioBruto = salario;
-		this.id = count;
-		count++;
-		
+		this.salarioBruto = salario;	
 	}
 	
 	@Override
@@ -49,8 +44,7 @@ public class Funcionario extends Pessoa implements Impostos{
 
 	@Override
 	public void calcularIR() {
-		double valorDependentes = dependentes.size() * taxaDependente;
-		descontoIr = salarioBruto - descontoInss - valorDependentes;
+		descontoIr = salarioBruto - descontoInss - (dependentes.size() * taxaDependente);
 		
 		if(descontoIr > 4664.68) {
 			descontoIr = descontoIr *.275 - 869.36;
@@ -79,9 +73,7 @@ public class Funcionario extends Pessoa implements Impostos{
 	public static void addCpfFuncionarios(String cpf) {
 		Funcionario.cpfFuncionarios.add(cpf);
 	}
-	public void addDependente(String[] person) {
-		Dependente dependente = Parsing.parseDependente(person);
-		
+	public void addDependente(Dependente dependente) {		
 		if (dependente != null)
 			this.dependentes.add(dependente);
 	}
@@ -90,40 +82,5 @@ public class Funcionario extends Pessoa implements Impostos{
 	public String toString() {
 		return nome + ";" + cpf + ";" + descontoInss + ";" + descontoIr+ ";" + salarioLiquido + "\n";
 	}
-
-
-	public static void setCount(int i) {
-		Funcionario.count += i;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public double getSalarioBruto() {
-		return salarioBruto;
-	}
-
-	public double getDependentesSize() {
-		return dependentes.size();
-	}
-
-	public double getInss() {
-		return descontoInss;
-	}
-
-	public double getdescontoIr() {
-		return descontoIr;
-	}
-
-	public double getSalarioLiquido() {
-		return salarioLiquido;
-	}
-	
-
 	
 }
