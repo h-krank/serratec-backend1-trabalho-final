@@ -2,6 +2,7 @@ package scanner;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Scanner;
 
 import main.Start;
@@ -15,10 +16,11 @@ public class GetSources extends Start{
 		while(true) {
 			System.out.println("\nInsira o caminho do arquivo para a inserção de dados");
 			String filePath = read.nextLine();
+			String[] formatos = {".csv", ".txt"};
 						
 			if(new File (filePath).isFile()) {
 				int len = filePath.length();
-				if(filePath.substring(len-4, len).equals(".csv")) {
+				if(Arrays.asList(formatos).contains(filePath.substring(len-4, len))) {
 					return new File(filePath);
 				}
 				
