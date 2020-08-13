@@ -110,7 +110,7 @@ public class Funcionario extends Pessoa implements Impostos{
 		return salarioBruto;
 	}
 
-	public double getDependentes() {
+	public double getDependentesSize() {
 		return dependentes.size();
 	}
 

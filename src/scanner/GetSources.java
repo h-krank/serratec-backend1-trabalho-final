@@ -17,11 +17,13 @@ public class GetSources extends Start{
 			String filePath = read.nextLine();
 						
 			if(new File (filePath).isFile()) {
-				if(filePath.contains(".csv")) {
+				int len = filePath.length();
+				if(filePath.substring(len-4, len).equals(".csv")) {
 					return new File(filePath);
 				}
-				System.out.println("O arquivo especificado não é do tipo .csv");
-			}
+				
+				System.out.printf("O arquivo %s não é do tipo .csv \nTente novamente\n", filePath);
+			} 
 			else {
 				System.out.println("---Caminho inválido, tente novamente---");
 			}
@@ -33,10 +35,12 @@ public class GetSources extends Start{
 			String filePath = read.next();
 			
 			if(new File (filePath).isFile()) {
-				if(filePath.contains(".csv")) {
+				int len = filePath.length();
+				if(filePath.substring(len-4, len).equals(".csv")) {
 					return filePath;
 				}
-			}else {
+			} 
+			else {
 			
 				System.out.println("O arquivo especificado não é do tipo .csv ou não existe");
 				System.out.println("Deseja criar um novo arquivo? (Y/n)");

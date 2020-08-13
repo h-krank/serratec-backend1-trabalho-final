@@ -20,13 +20,18 @@ public class ScanFile extends GetSources{
 
 			//Adiciona a primeira linha do bloco como novo funcionário
 			while (input.hasNextLine()) {
-				String[] person 		= input.nextLine().split(";");
+				String[] person = input.nextLine().split(";");
+				
+				//Cuida de linhas vazias extras no arquivo
+				if(person.length == 1) {
+					continue;
+				}
 				Funcionario funcionario = Parsing.parseFuncionario(person);
 				
 				//Enquanto não encontrar uma linha vazia, adiciona as linhas subsequentes como dependentes
 				while (true) {
 						person = input.nextLine().split(";");
-						
+
 						//Ao encontrar uma linha vazia, finaliza os valores do funcionário
 						//adiciona na lista de funcionários e quebra o loop
 						if (person.length == 1) {
@@ -42,19 +47,6 @@ public class ScanFile extends GetSources{
 						}
 
 						funcionario.addDependente(person);
-						
-						//Código um pouco repetido, helper functions aparentemente não funcionam em Java
-						if(!input.hasNextLine()) {
-							funcionario.calcularINSS();
-							funcionario.calcularIR();
-							funcionarios.add(funcionario);
-							
-							if (funcionario != null) {
-								writer.write(funcionario.toString());
-								System.out.println("\nFuncionário cadastrado com sucesso!");
-								return;
-							}
-						}
 				}
 			}
 			
@@ -67,6 +59,7 @@ public class ScanFile extends GetSources{
 		}catch (IOException e) {
 			System.out.println(e.getMessage());
 		} finally {
+			input.close();
 			writer.close();
 			System.out.println("\n" + outputFile + " atualizado");
 		}

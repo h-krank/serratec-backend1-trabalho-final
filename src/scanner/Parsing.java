@@ -2,6 +2,7 @@ package scanner;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 
 import exceptions.DependenteException;
 import exceptions.FuncionarioException;
@@ -18,7 +19,7 @@ public class Parsing {
 			String nome 			= person[0];
 			Double tryCpf 			= Double.parseDouble(person[1]);
 			String cpf				= person[1];
-			DateTimeFormatter data 	= DateTimeFormatter.ofPattern("yyyMMdd");
+			DateTimeFormatter data 	= DateTimeFormatter.ofPattern("yyyyMMdd");
 			LocalDate nascimento 	= LocalDate.parse(person[2], data);
 			Double salario 			= Double.parseDouble(person[3]);
 			
@@ -56,7 +57,7 @@ public class Parsing {
 			Parentesco parentesco 	= Parentesco.valueOf(person[3]);
 			
 			//Verifica se dependente é menor de 18
-			if (LocalDate.now().getYear() - nascimento.getYear() > 18) {
+			if (-ChronoUnit.DAYS.between(LocalDate.now(), nascimento) > 18 * 365) {
 				throw new DependenteException("Dependente inválido - Dependente maior de idade");
 			}
 			//Verifica se o CPF tem 11 digiots
