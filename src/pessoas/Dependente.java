@@ -9,9 +9,7 @@ public class Dependente extends Pessoa {
 	private static Set<String> cpfDependentes = new HashSet<String>();
 	
 	public Dependente(String nome, String cpf, LocalDate nascimento, Parentesco parentesco) {
-		this.nome = nome;
-		this.cpf = cpf;
-		this.nascimento = nascimento;
+		super(nome, cpf, nascimento);
 		this.parentesco = parentesco;
 	}
 	

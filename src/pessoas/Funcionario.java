@@ -21,10 +21,8 @@ public class Funcionario extends Pessoa implements Impostos{
 	
 	
 	public Funcionario(String nome, String cpf, LocalDate nascimento, double salario) {
-		this.nome = nome;
-		this.cpf = cpf;
+		super(nome, cpf, nascimento);
 		this.salarioBruto = salario;
-		this.nascimento = nascimento;
 		this.id = count;
 		count++;
 		

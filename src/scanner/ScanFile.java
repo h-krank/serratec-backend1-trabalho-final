@@ -54,8 +54,7 @@ public class ScanFile extends GetSources{
 			System.out.println("File not found");
 			
 		}catch (NoSuchElementException e) {
-			writer.close();
-			System.out.println("ERROR");
+			System.out.println("No such element excpetion");
 		}catch (IOException e) {
 			System.out.println(e.getMessage());
 		} finally {
