@@ -26,16 +26,16 @@ public class Funcionario extends Pessoa implements Impostos{
 		descontoInss = salarioBruto;
 		
 		if (salarioBruto < 1751.81) {
-			descontoInss *= .08;
+			descontoInss *= 0.08;
 		}
 		else if(salarioBruto < 2919.72) {
-			descontoInss *= .09;
+			descontoInss *= 0.09;
 		}
 		else if (salarioBruto < 5839.45) {
-			descontoInss *= .11;
+			descontoInss *= 0.11;
 		}
 		else {
-			descontoInss = 5839.456 * .11;
+			descontoInss = 5839.456 * 0.11;
 		}
 		this.descontoInss = Math.round(descontoInss * 100.0) / 100.0;
 	}

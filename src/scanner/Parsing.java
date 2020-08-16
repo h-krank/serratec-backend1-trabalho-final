@@ -57,6 +57,11 @@ public class Parsing {
 			Parentesco parentesco 	= Parentesco.valueOf(person[3]);
 			
 			//Verifica se dependente é menor de 18
+			//da pra fazer mais simples isso aqui, deixa eu tentar lembrar a sintaxe kk
+//			if (LocalDate.now().getYear() - nascimento.getYear() >= 18)
+				//isso aqui já resolve
+			//só pra impedir que seja cadastrado
+				
 			if (-ChronoUnit.DAYS.between(LocalDate.now(), nascimento) > 18 * 365) {
 				throw new DependenteException("Dependente inválido - Dependente maior de idade");
 			}

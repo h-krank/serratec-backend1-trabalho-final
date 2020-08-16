@@ -14,7 +14,6 @@ public class ScanFile extends GetSources{
 		String outputFile = outputFile();
 		Scanner input = new Scanner(inputFile);
 		FileWriter writer = new FileWriter(outputFile);
-		Boolean finish = false; 
 		
 		try {
 			//Adiciona a primeira linha do bloco como novo funcionário
@@ -35,26 +34,23 @@ public class ScanFile extends GetSources{
 				}
 				
 				//Enquanto não encontrar uma linha vazia, adiciona as linhas subsequentes como dependentes
-				while (true) {
-						if (input.hasNextLine()) {
-							person = input.nextLine().split(";");	
-						} else {
-							finish = true;
-						}
+				while (input.hasNextLine()) {
+					person = input.nextLine().split(";");
 
-						if (person.length == 1 || finish) {
-							funcionario.calcularINSS();
-							funcionario.calcularIR();
-							
-							funcionarios.add(funcionario);
-							writer.write(funcionario.toString());
-							System.out.println("\nFuncionário cadastrado com sucesso!");
-						
-							break;
-						}
+					if (person.length == 1) {				
+						break;
+					}
 
-						funcionario.addDependente(Parsing.parseDependente(person));
+					funcionario.addDependente(Parsing.parseDependente(person));
 				}
+				
+				//Finaliza cadastro
+				funcionario.calcularINSS();
+				funcionario.calcularIR();
+				
+				funcionarios.add(funcionario);
+				writer.write(funcionario.toString());
+				System.out.println("\nFuncionário cadastrado com sucesso!");
 			}
 
 		} 
